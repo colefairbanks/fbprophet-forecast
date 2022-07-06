@@ -89,7 +89,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Cole Fairbanks - ccole.fairbanks@gmail.com
 
-Full Project Analysis: [https://colefairbanks.com/fbprophet-forecast](https://colefairbanks.com/fbprophet-forecast)
+Full Project Analysis: [colefairbanks.com/fbprophet-forecast](https://colefairbanks.com/fbprophet-forecast)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
