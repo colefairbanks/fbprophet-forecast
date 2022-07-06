@@ -30,7 +30,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -90,7 +89,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Cole Fairbanks - ccole.fairbanks@gmail.com
 
-Full Project Analysis: [https://github.com/colefairbanks/fbprophet-xforecast](https://github.com/colefairbanks/fbprophet-xforecast)
+Full Project Analysis: [https://colefairbanks.com/fbprophet-forecast](https://colefairbanks.com/fbprophet-forecast)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -109,17 +108,5 @@ Full Project Analysis: [https://github.com/colefairbanks/fbprophet-xforecast](ht
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/colefairbanks
 [product-screenshot]: images/screenshot.png
-Footer
+
 © 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
