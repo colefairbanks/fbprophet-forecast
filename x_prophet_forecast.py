@@ -24,7 +24,7 @@
 
 # ### Installing Prophet Package
 
-# In[40]:
+# In[56]:
 
 
 #!pip install fbprophet
@@ -32,7 +32,7 @@
 
 # ### Loading Libraries
 
-# In[41]:
+# In[57]:
 
 
 import math
@@ -56,7 +56,7 @@ from fbprophet.diagnostics import cross_validation,performance_metrics
 # 
 # This model has been optimized for 2 year forecasts, or 26 months due to the nature of Z's 2 year product life cycle and the Z HW regressor column.  However, you may choose how many months out you would like to forecast by typing in the number of desired months below:
 
-# In[42]:
+# In[58]:
 
 
 months_out = 26
@@ -64,7 +64,7 @@ months_out = 26
 
 # ### Reading in CSV
 
-# In[43]:
+# In[59]:
 
 
 actuals_df = pd.read_csv('/Users/colefairbanks/github/fbprophet-xforecast/historical_x_revenue.csv')
@@ -74,7 +74,7 @@ actuals_df = pd.read_csv('/Users/colefairbanks/github/fbprophet-xforecast/histor
 # 
 # The format of the dataframe is very important to Prophet.  The date column, for example needs to be labeled as "ds" and contain datetime data.  In addition, the forecast model output or y must be labeled as "y".  In this case, our y values will reflect hardware maintenence revenue (HWMA).  Because Finance has also provided HW (not maintenence) revenue, we will use it within this model as a regressor, given thier inverse relationship.  There are no requirements for regressor labels and so, we will label it "hw".
 
-# In[44]:
+# In[60]:
 
 
 #converting Date column to datetime type
@@ -96,7 +96,7 @@ actuals_df.tail()
 # 
 # To avoid overcomplicating the notebook, I formatted the csv file so that all we need to do is shift the hardware revenue column 26 periods (months) in the future so that it correlates with the MA revenue,
 
-# In[45]:
+# In[61]:
 
 
 #creating a new df that only has date and hw
@@ -109,7 +109,7 @@ hw_df = hw_df.set_index('ds')
 hw_df = hw_df.shift(periods=26,freq='M')
 
 
-# In[46]:
+# In[62]:
 
 
 #grabbing only date and ma revenue from actuals df
@@ -128,7 +128,7 @@ actuals_df = pd.concat([actuals_df, hw_df], axis = 1)
 actuals_df = actuals_df.reset_index(drop=False)
 
 
-# In[47]:
+# In[63]:
 
 
 #converting all 0s to None
@@ -140,7 +140,7 @@ actuals_df = actuals_df.dropna(subset=['hw']).reset_index(drop=True)
 
 # Just to prove the two columns are now correlated, we can do a simple test.
 
-# In[48]:
+# In[64]:
 
 
 actuals_df['y'].corr(actuals_df['hw'])
@@ -152,7 +152,7 @@ actuals_df['y'].corr(actuals_df['hw'])
 
 # This is a visual representation of X MA revenue, represented by the y axis. The date represents by the x axis.   Visual aids are important to any Analyst planning to build or maintain simialar models, given the complexities of formatting data and operating the algorithms themselves.  Graphs like this one give Analysts a sense of verification they are operating the model correctly. For that reason, we will continue to visualize our steps and end product with matplotlib. 
 
-# In[49]:
+# In[65]:
 
 
 actuals_df2 = actuals_df.copy()
@@ -178,7 +178,7 @@ ax.legend(frameon=False);
 
 # #### Calculating Mean, Median, Mode, Min, Max, Standard Deviation, and Skew
 
-# In[50]:
+# In[66]:
 
 
 mean = actuals_df2['y'].mean()
@@ -196,7 +196,7 @@ ct_df = ct_df.style.set_properties(**{'text-align': 'center'}).hide_index()
 
 # #### Plotting Central Tendency
 
-# In[51]:
+# In[67]:
 
 
 ax = plt.subplot(frameon=False)
@@ -220,7 +220,7 @@ ct_df
 
 # Many datasets tend to have missing data and/or statistical outliers that can increase error and skew model results.  By calculating measures of central tendency like mean, median, and mode, we can learn more about the data we are working with and potentially replace those outliers and/or missing values with a value like mean, which can ultimately reduce our error.  Unlike many other models, Prophet also accepts replacing outliers with "None".
 
-# In[52]:
+# In[68]:
 
 
 actuals_df['moving_average'] = actuals_df.rolling(window=6, min_periods=1, center=True, on='ds')['y'].mean()
@@ -229,7 +229,7 @@ actuals_df['lower'] = actuals_df['moving_average'] - 1.645 * actuals_df['std_dev
 actuals_df['upper'] = actuals_df['moving_average'] + 1.645 * actuals_df['std_dev']
 
 
-# In[53]:
+# In[69]:
 
 
 actuals_df2 = actuals_df.copy()
@@ -274,7 +274,7 @@ actuals_df.loc[((actuals_df['y'] > actuals_df['upper']) | (actuals_df['y'] < act
 
 # The following line assigns None values to all actuals that fall outside pink margin of error above.  Once the outliers are removed, we can begin modeling.
 
-# In[54]:
+# In[70]:
 
 
 actuals_df.loc[((actuals_df['y'] > actuals_df['upper']) | (actuals_df['y'] < actuals_df['lower'])), 'y'] = None
@@ -288,7 +288,7 @@ actuals_df.loc[((actuals_df['y'] > actuals_df['upper']) | (actuals_df['y'] < act
 
 # After normalization, Without tuning any paremeters
 
-# In[55]:
+# In[71]:
 
 
 model = Prophet()
@@ -299,7 +299,7 @@ forecast = model.predict(future_df)
 
 # Text about this function that makes a compare table
 
-# In[56]:
+# In[72]:
 
 
 def compare(actuals_df,forecast_df):
@@ -330,19 +330,19 @@ def compare(actuals_df,forecast_df):
     return compare
 
 
-# In[57]:
+# In[73]:
 
 
 compare(actuals_df,forecast).tail(6)
 
 
-# In[58]:
+# In[74]:
 
 
 model.plot_components(forecast);
 
 
-# In[59]:
+# In[75]:
 
 
 def accuracy(model,months_out):
@@ -363,7 +363,7 @@ def accuracy(model,months_out):
     return pm_df.groupby(['Forecast Model','Months Out'], as_index=False).mean()
 
 
-# In[60]:
+# In[76]:
 
 
 accuracy_results1 = accuracy(model,months_out)
@@ -374,7 +374,7 @@ accuracy_results1.head(12)
 
 # #### Round 2
 
-# In[61]:
+# In[77]:
 
 
 model = Prophet()
@@ -384,19 +384,19 @@ future_df = actuals_df[['ds','hw']]
 forecast = model.predict(future_df)
 
 
-# In[62]:
+# In[78]:
 
 
 compare(actuals_df,forecast).tail(6)
 
 
-# In[63]:
+# In[79]:
 
 
 model.plot_components(forecast);
 
 
-# In[64]:
+# In[80]:
 
 
 accuracy_results2 = accuracy(model,months_out)
@@ -407,7 +407,7 @@ accuracy_results2.head(12)
 
 # #### Round 3
 
-# In[65]:
+# In[81]:
 
 
 model = Prophet(yearly_seasonality=4)
@@ -420,19 +420,19 @@ future_df = actuals_df[['ds','hw']]
 forecast = model.predict(future_df)
 
 
-# In[66]:
+# In[82]:
 
 
 compare(actuals_df,forecast).tail(6)
 
 
-# In[67]:
+# In[83]:
 
 
 model.plot_components(forecast);
 
 
-# In[68]:
+# In[84]:
 
 
 accuracy_results3 = accuracy(model,months_out)
@@ -445,7 +445,7 @@ accuracy_results3.head(12)
 
 # Once we are confident in our test, train, split results, the model is now fit to the entire dataset and a forecast in created that now goes beyond the test set by the number of months out we specified at the beginning of the notebook.  Notice how the .fit function now contains our original df instead of the training set.
 
-# In[69]:
+# In[85]:
 
 
 model = Prophet(yearly_seasonality=4)
@@ -459,7 +459,7 @@ future_df = actuals_df[['ds','hw']]
 forecast = model.predict(future_df)
 
 
-# In[70]:
+# In[86]:
 
 
 actuals_df3 = actuals_df.copy()
@@ -476,7 +476,13 @@ compare3 = compare3.groupby(['Year','Quarter','Period'],as_index=False).sum()
 compare3 = compare3[['Period','Actuals','Forecast']]
 
 
-# In[71]:
+# In[87]:
+
+
+forecast['product_cycle'] = forecast['2-Year Z Cycle'] + forecast['trend']
+
+
+# In[88]:
 
 
 x = np.array(forecast['ds'])
@@ -485,7 +491,8 @@ actuals = actuals_df['y']
 y_lower = np.array(forecast['yhat_lower'])
 y_upper = np.array(forecast['yhat_upper'])
 y_hat = forecast['yhat']
-trend = forecast['trend'] 
+trend = forecast['trend']
+product_cycle = forecast['2-Year Z Cycle'] + forecast['trend']
 
 fig, ax1 = plt.subplots(figsize=(15,7))
 
@@ -501,6 +508,7 @@ ax1.plot(x, y_upper, color='#4B6BAF', alpha=0.1, label='_nolegend_')
 ax1.plot(x, y_hat, color='#4B6BAF', alpha=None)
 ax1.plot(x2, actuals, '.',color='black')
 ax1.plot(x, trend, '--',color='red')
+ax1.plot(x2, product_cycle, '-',color='red')
 ax1.fill_between(x, y_lower, y_upper, where=(y_lower < y_upper), color='#4B6BAF', alpha=0.2)
 
 #a = add_changepoints_to_plot(fig.gca(),m,forecast)
@@ -525,13 +533,13 @@ compare3.tail(12)
 
 # Here we format the forecast dataframe to have year, quarter, month, geo, and platform column so we can reference them in the TSS WW excel revenue model via a SUMIFS function. Finally, the forecast_df.to_csv function exports that table to our Box folder destination as a csv file.
 
-# In[72]:
+# In[89]:
 
 
-forecast_df = forecast[['ds','trend','yhat_lower','yhat_upper','yhat']]
+forecast_df = forecast[['ds','trend','product_cycle','yhat_lower','yhat_upper','yhat']]
 
 
-# In[73]:
+# In[90]:
 
 
 pd.options.mode.chained_assignment = None
@@ -542,21 +550,21 @@ forecast_df['Product'] = 'X'
 forecast_df['Geo'] = 'WW'
 
 
-# In[74]:
+# In[91]:
 
 
 forecast_df['Quarter'] = forecast_df['Quarter'].astype(str)
 forecast_df['Quarter'] = "Q" + forecast_df['Quarter']
 
 
-# In[75]:
+# In[92]:
 
 
-forecast_df = forecast_df[['ds','Year','Quarter','Month','Geo','Product','trend','yhat_lower','yhat_upper','yhat']]
-forecast_df.columns = ['Date','Year','Quarter','Month','Geo','Product','Trend','Lower Margin','Upper Margin','Revenue']
+forecast_df = forecast_df[['ds','Year','Quarter','Month','Geo','Product','trend','product_cycle','yhat_lower','yhat_upper','yhat']]
+forecast_df.columns = ['Date','Year','Quarter','Month','Geo','Product','Trend','Product Cycle','Lower Margin','Upper Margin','Revenue']
 
 
-# In[76]:
+# In[93]:
 
 
 accuracy_df = accuracy_results3[['Forecast Model', 'Months Out', 'MSE', 'RMSE', 'MAE', 'MAPE','MDAPE', 'Coverage', 'Accuracy']]
@@ -564,13 +572,13 @@ accuracy_df = accuracy_results3[['Forecast Model', 'Months Out', 'MSE', 'RMSE', 
 
 # #### Export Test Data (Accuracy) to CSV
 
-# In[77]:
+# In[95]:
 
 
 forecast_df.to_csv('x_forecast.csv', index=False)
 
 
-# In[78]:
+# In[96]:
 
 
 accuracy_df.to_csv('x_accuracy.csv', index=False)
