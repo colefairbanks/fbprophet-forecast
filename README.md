@@ -25,9 +25,8 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Prerequisites</a>
+      <a href="#Prerequisites">Prerequisites</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -53,7 +52,7 @@ Regarding how Prophet was built, this alogrithm sees forecasting primarily as a 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Prerequisites
+## Prerequisites
 
 * fbprophet
   ```sh
@@ -75,6 +74,8 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
 
 <!-- LICENSE -->
 ## License
