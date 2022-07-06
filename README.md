@@ -25,7 +25,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Prerequisites</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -53,28 +53,12 @@ Regarding how Prophet was built, this alogrithm sees forecasting primarily as a 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
 * fbprophet
   ```sh
   !pip install fbprophet
   ```
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -92,23 +76,18 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 ## License
-
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
 
 Cole Fairbanks - ccole.fairbanks@gmail.com
 
-Project Link: [https://github.com/colefairbanks/fbprophet-xforecast](https://github.com/colefairbanks/fbprophet-xforecast)
+Full Project Analysis: [https://github.com/colefairbanks/fbprophet-xforecast](https://github.com/colefairbanks/fbprophet-xforecast)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
