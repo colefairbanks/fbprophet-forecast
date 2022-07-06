@@ -54,6 +54,8 @@ Regarding how Prophet was built, this alogrithm sees forecasting primarily as a 
 
 ## Prerequisites
 
+### Installation
+
 * fbprophet
   ```sh
   !pip install fbprophet
