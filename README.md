@@ -1,8 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://https://colefairbanks.com/forecasting">
-    <img src="https://images.squarespace-cdn.com/content/v1/5a0b1aba90bcce4bd55450fb/2ce2fd01-de4b-4a60-825a-3bf6dbb62f95/prophet_blue.png" alt="Logo">
+  <a href="https://images.squarespace-cdn.com/content/v1/5a0b1aba90bcce4bd55450fb/ccdcf653-13ec-4d07-ab78-0920ff5dccc7/prophet_blue.jpg" alt="Logo">
   </a>
 
 <h3 align="center">Facebook Prophet X Forecast</h3>
