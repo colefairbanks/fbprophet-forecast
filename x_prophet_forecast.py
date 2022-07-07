@@ -354,13 +354,13 @@ def accuracy(model,months_out):
     
     pm_df['accuracy'] = (1 - pm_df['mape']).round(3)
     pm_df['days out'] = pm_df['horizon']
-    pm_df['months out'] = (((pm_df['horizon'].astype(str).str[:3].str.strip().astype(int))/30).round(3)).astype(str)
+    pm_df['months out'] = pm_df['months out'] = (((pm_df['horizon'].astype(str).str[:3].str.strip().str.replace(' d','').astype(int))/30).round(3)).astype(str)
     pm_df['months out'] = pm_df['months out'].astype(float).astype(int)
     pm_df['Forecast Model'] = 'X MA'
-    pm_df = pm_df[['Forecast Model', 'days out', 'months out', 'mse', 'rmse', 'mae', 'mape', 'mdape', 'coverage','accuracy']]
-    pm_df.columns = ['Forecast Model', 'Days Out', 'Months Out', 'MSE', 'RMSE', 'MAE', 'MAPE', 'MDAPE', 'Coverage', 'Accuracy']
+    pm_df = pm_df[['UT30','Forecast Model', 'days out', 'months out', 'mse', 'rmse', 'mae', 'mape', 'mdape', 'coverage','accuracy']]
+    pm_df.columns = ['UT30','Forecast Model', 'Days Out', 'Months Out', 'MSE', 'RMSE', 'MAE', 'MAPE', 'MDAPE', 'Coverage', 'Accuracy']
     
-    return pm_df.groupby(['Forecast Model','Months Out'], as_index=False).mean()
+    return pm_df.groupby(['UT30','Forecast Model','Months Out'], as_index=False).mean()
 
 
 # In[76]:
