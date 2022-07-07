@@ -89,10 +89,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Cole Fairbanks
 
-Personal Website & Portfolio:[colefairbanks.com](https://colefairbanks.com)
-LinkedIn: [linkedin.com/in/colefairbanks/](https://linkedin.com/in/colefairbanks/)
-Github Repos: [github.com/colefairbanks?tab=repositories](https://github.com/colefairbanks?tab=repositories)
-Email: ccole.fairbanks@gmail.com
+* [Cole's Portfolio](https://colefairbanks.com)
+* [Connect with Cole on LinkedIn](https://linkedin.com/in/colefairbanks/)
+* [Cole's Github Repos](https://github.com/colefairbanks?tab=repositories)
+* Email: ccole.fairbanks@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
