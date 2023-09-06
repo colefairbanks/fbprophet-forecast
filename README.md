@@ -1,39 +1,7 @@
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://colefairbanks.com/fbprophet-forecasting">
-    <img src="https://images.squarespace-cdn.com/content/v1/5a0b1aba90bcce4bd55450fb/ccdcf653-13ec-4d07-ab78-0920ff5dccc7/prophet_blue.jpg" alt="Logo">
-  </a>
+# Why Data Scientists Beat Financial Forecasters
 
-<h3 align="center">Forecasting Cyclical Revenue Using Facebook Prophet</h3>
+*Additive Linear Regression Using Facebook Prophet*
 
-  <p align="center">
-    <em>ADDITIVE LINEAR REGRESSION</em>
-  </p>
-
-  <p align="center">
-    Advising Finance on Accurately Forecasting Revenue
-  </p>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      </ul>
-    </li>
-    <li>
-      <a href="#Prerequisites">Prerequisites</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
 
 ## About The Project
 
